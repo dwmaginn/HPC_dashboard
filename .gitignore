@@ -4,7 +4,6 @@ npm-debug.log*
 
 # PHP / Composer
 vendor/
-composer.lock
 
 # Env / Secrets
 .env
