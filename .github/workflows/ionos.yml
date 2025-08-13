@@ -1,0 +1,36 @@
+name: Deploy to IONOS
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build assets and data
+        run: npm run build
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+
+      - name: Install PHP dependencies
+        run: composer install --no-dev --prefer-dist --no-interaction --no-progress
+
+      - name: Deployment step placeholder (IONOS Deploy Now will inject its own deploy step after linking)
+        run: echo "Deployment handled by IONOS Deploy Now after project linking."
+
+
