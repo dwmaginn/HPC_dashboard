@@ -5,7 +5,8 @@
   "main": "convertMenu.js",
   "scripts": {
     "seed": "node seedMenu.js",
-    "build": "node convertMenu.js",
+    "build:css": "tailwindcss -i assets/tailwind.css -o assets/styles.css --minify",
+    "build": "npm run build:css && node convertMenu.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,5 +22,10 @@
   "homepage": "https://github.com/dwmaginn/HPC_dashboard#readme",
   "dependencies": {
     "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.10"
   }
 }
