@@ -1,0 +1,23 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# PHP / Composer
+vendor/
+composer.lock
+
+# Env / Secrets
+.env
+.deploy-now/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+
+# Data artifacts
+data/menu.json
+data/orders.log
+
+

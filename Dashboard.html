@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Honest Pharmco Dispensary Ordering Dashboard</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .dashboard-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        .header {
+            background-color: #f9f9f9;
+            border-bottom: 2px solid #43a047;
+        }
+        .nav-tab {
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        .nav-tab.active {
+            border-bottom: 3px solid #43a047;
+            font-weight: bold;
+        }
+        .product-table th {
+            background-color: #43a047;
+            color: white;
+        }
+        .product-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .product-table tr:hover {
+            background-color: #e8f5e9;
+        }
+        .order-btn {
+            transition: all 0.3s ease;
+        }
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+        }
+        .summary-container {
+            border: 1px solid #e0e0e0;
+            background-color: #f9f9f9;
+        }
+        .category-section {
+            display: none;
+        }
+        .category-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="dashboard-container mx-auto p-4">
+<!-- Header -->
+<div class="header flex justify-between items-center p-4 rounded-lg mb-6">
+<div class="flex items-center">
+<img alt="Honest Pharmco Logo" class="h-24" src="https://page.gensparksite.com/slides_images/487118cb29db6ef60508635a29b679bb.png"/>
+<div class="ml-6">
+<h1 class="text-3xl font-bold">Honest Pharmco</h1>
+<p class="text-gray-600">Licensed NY Cannabis Cultivator</p>
+</div>
+</div>
+<div>
+<p class="font-semibold">ORDER DASHBOARD</p>
+<p class="text-sm text-gray-600">License: OCM-CULT-24-000099</p>
+<p class="text-sm text-gray-600">Date: August 13, 2025</p>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<div class="flex border-b mb-6">
+<div class="nav-tab active px-6 py-3 text-lg" data-category="all">All Products</div>
+<div class="nav-tab px-6 py-3 text-lg" data-category="preroll">Pre-Rolls</div>
+<div class="nav-tab px-6 py-3 text-lg" data-category="infused">Infused Pre-Rolls</div>
+<div class="nav-tab px-6 py-3 text-lg" data-category="vape">Vapes</div>
+<div class="nav-tab px-6 py-3 text-lg" data-category="edible">Edibles</div>
+<div class="nav-tab px-6 py-3 text-lg" data-category="tincture">Tinctures</div>
+</div>
+<!-- Main Content Area -->
+<div class="main-content flex">
+<!-- Product Listings (70% width) -->
+<div class="products-container w-8/12 pr-6">
+<!-- JIVE Products -->
+<div class="mb-8">
+<h2 class="text-2xl font-bold mb-4 text-green-700">JIVE Products</h2>
+<!-- Product Table -->
+<table class="product-table w-full border-collapse">
+<thead>
+<tr>
+<th class="p-2 text-left">Product</th>
+<th class="p-2 text-center">Strain/THC</th>
+<th class="p-2 text-center">Unit Price</th>
+<th class="p-2 text-center">Case Size</th>
+<th class="p-2 text-center">Case Price</th>
+<th class="p-2 text-center">Order Qty</th>
+</tr>
+</thead>
+<tbody>
+<!-- Pre-Rolls -->
+<tr class="product-row preroll">
+<td class="p-2">Jukebox Prerolls Indica</td>
+<td class="p-2 text-center">Apple Punch<br/><span class="font-semibold">30.29% THC</span></td>
+<td class="p-2 text-center">$25.00</td>
+<td class="p-2 text-center">20</td>
+<td class="p-2 text-center">$500.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<tr class="product-row preroll">
+<td class="p-2">Jukebox Prerolls Sativa</td>
+<td class="p-2 text-center">Durban Poison<br/><span class="font-semibold">27.73% THC</span></td>
+<td class="p-2 text-center">$25.00</td>
+<td class="p-2 text-center">20</td>
+<td class="p-2 text-center">$500.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<!-- Infused Pre-Rolls -->
+<tr class="product-row infused">
+<td class="p-2">High Note 1.25g pre roll Sativa (infused)</td>
+<td class="p-2 text-center">Chemmodo Dragon/Orange Creamsicle<br/><span class="font-semibold">Vape: 88% Flower: 31% THC</span></td>
+<td class="p-2 text-center">$20.00</td>
+<td class="p-2 text-center">25</td>
+<td class="p-2 text-center">$500.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<tr class="product-row infused">
+<td class="p-2">High Note 1.25g pre roll Hybrid (infused)</td>
+<td class="p-2 text-center">Jamaican Strawberries/Biscotti Skunk<br/><span class="font-semibold">Vape: 95% Flower: 29% THC</span></td>
+<td class="p-2 text-center">$20.00</td>
+<td class="p-2 text-center">25</td>
+<td class="p-2 text-center">$500.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<tr class="product-row infused">
+<td class="p-2">High Note 1.25g pre roll Indica (infused)</td>
+<td class="p-2 text-center">Mandarin Zkittlez/BlueBerry Ice Pop<br/><span class="font-semibold">Vape: 89% Flower: 25% THC</span></td>
+<td class="p-2 text-center">$20.00</td>
+<td class="p-2 text-center">25</td>
+<td class="p-2 text-center">$500.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<!-- Vapes -->
+<tr class="product-row vape">
+<td class="p-2">JIVE Duet Vape SSD/PP</td>
+<td class="p-2 text-center">Super Sour Diesel &amp; Papaya Punch<br/><span class="font-semibold">90.26% THC</span></td>
+<td class="p-2 text-center">$22.00</td>
+<td class="p-2 text-center">30</td>
+<td class="p-2 text-center">$660.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<tr class="product-row vape">
+<td class="p-2">JIVE Duet Vape TS/WG</td>
+<td class="p-2 text-center">Tangie Sunrise &amp; White Gushers<br/><span class="font-semibold">90.64% THC</span></td>
+<td class="p-2 text-center">$22.00</td>
+<td class="p-2 text-center">30</td>
+<td class="p-2 text-center">$660.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<!-- Tinctures -->
+<tr class="product-row tincture">
+<td class="p-2">Jive Daytime Tinctures</td>
+<td class="p-2 text-center">500mg THC, 250mg CBG, 250mg CBC, 500mg CBD<br/><span class="font-semibold">with green tea extract</span></td>
+<td class="p-2 text-center">$22.50</td>
+<td class="p-2 text-center">20</td>
+<td class="p-2 text-center">$450.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<tr class="product-row tincture">
+<td class="p-2">Jive Nighttime Tinctures</td>
+<td class="p-2 text-center">500mg THC, 250mg CBG, 250mg CBN, 500mg CBD<br/><span class="font-semibold">with ashwagandha and chamomile</span></td>
+<td class="p-2 text-center">$22.50</td>
+<td class="p-2 text-center">20</td>
+<td class="p-2 text-center">$450.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<!-- Edibles -->
+<tr class="product-row edible">
+<td class="p-2">Jive Dark Chocolate Minis</td>
+<td class="p-2 text-center">Hybrid<br/><span class="font-semibold">100mg THC</span></td>
+<td class="p-2 text-center">$12.00</td>
+<td class="p-2 text-center">24</td>
+<td class="p-2 text-center">$288.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<tr class="product-row edible">
+<td class="p-2">Jive Milk Chocolate Minis</td>
+<td class="p-2 text-center">Hybrid<br/><span class="font-semibold">100mg THC</span></td>
+<td class="p-2 text-center">$12.00</td>
+<td class="p-2 text-center">24</td>
+<td class="p-2 text-center">$288.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Honest Pharm Co. Products -->
+<div>
+<h2 class="text-2xl font-bold mb-4 text-green-700">Honest Pharm Co. Products</h2>
+<!-- Product Table -->
+<table class="product-table w-full border-collapse">
+<thead>
+<tr>
+<th class="p-2 text-left">Product</th>
+<th class="p-2 text-center">Strain/THC</th>
+<th class="p-2 text-center">Unit Price</th>
+<th class="p-2 text-center">Case Size</th>
+<th class="p-2 text-center">Case Price</th>
+<th class="p-2 text-center">Order Qty</th>
+</tr>
+</thead>
+<tbody>
+<!-- Infused Pre-Rolls -->
+<tr class="product-row infused">
+<td class="p-2">Double Hitter 1.25g Pre roll Hybrid (infused)</td>
+<td class="p-2 text-center">Gary Payton/Skywalker<br/><span class="font-semibold">Vape: 81% Flower: 27% THC</span></td>
+<td class="p-2 text-center">$20.00</td>
+<td class="p-2 text-center">25</td>
+<td class="p-2 text-center">$500.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<tr class="product-row infused">
+<td class="p-2">Double Hitter 1.25g Pre roll Indica (infused)</td>
+<td class="p-2 text-center">Ice Cream Cake/Berry Blue<br/><span class="font-semibold">Vape: 82% Flower: 25% THC</span></td>
+<td class="p-2 text-center">$20.00</td>
+<td class="p-2 text-center">25</td>
+<td class="p-2 text-center">$500.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<tr class="product-row infused">
+<td class="p-2">Double Hitter 1.25g Pre roll Sativa (infused)</td>
+<td class="p-2 text-center">Laughing Budda/Acapulco Gold<br/><span class="font-semibold">Vape: 81% Flower: 32% THC</span></td>
+<td class="p-2 text-center">$20.00</td>
+<td class="p-2 text-center">25</td>
+<td class="p-2 text-center">$500.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<!-- Vapes -->
+<tr class="product-row vape">
+<td class="p-2">Double hitter 3 pack vape (Sativa, Hybrid, Indica)</td>
+<td class="p-2 text-center">Laughing Budda/Gary Payton/Ice Cream Cake<br/><span class="font-semibold">81%/81%/82% THC</span></td>
+<td class="p-2 text-center">$30.00</td>
+<td class="p-2 text-center">20</td>
+<td class="p-2 text-center">$600.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<!-- Pre-Rolls and Blunts -->
+<tr class="product-row preroll">
+<td class="p-2">Puma Blunt Roll 1g Puma Piss</td>
+<td class="p-2 text-center">Forbidden Cheetah x White Runtz<br/><span class="font-semibold">22.73% THC</span></td>
+<td class="p-2 text-center">$6.00</td>
+<td class="p-2 text-center">50</td>
+<td class="p-2 text-center">$300.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<tr class="product-row preroll">
+<td class="p-2">Puma Blunt Roll 1g PR-13</td>
+<td class="p-2 text-center">BlueBerry Ice Pop<br/><span class="font-semibold">25.38% THC</span></td>
+<td class="p-2 text-center">$6.00</td>
+<td class="p-2 text-center">50</td>
+<td class="p-2 text-center">$300.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<tr class="product-row preroll">
+<td class="p-2">Jam Master Jays .5g pre-roll 4pk</td>
+<td class="p-2 text-center">Tricho Jordan<br/><span class="font-semibold">30.12% THC</span></td>
+<td class="p-2 text-center">$20.00</td>
+<td class="p-2 text-center">20</td>
+<td class="p-2 text-center">$400.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<tr class="product-row preroll">
+<td class="p-2">Day to Night Pre-roll 4 pack</td>
+<td class="p-2 text-center">Maui Wowie/Royal Skywalker<br/><span class="font-semibold">30.94% THC</span></td>
+<td class="p-2 text-center">$22.00</td>
+<td class="p-2 text-center">20</td>
+<td class="p-2 text-center">$440.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<tr class="product-row preroll">
+<td class="p-2">Exotic Bliss Kief Dusted Minis</td>
+<td class="p-2 text-center">Fruity Dragon<br/><span class="font-semibold">28.00% THC</span></td>
+<td class="p-2 text-center">$20.00</td>
+<td class="p-2 text-center">25</td>
+<td class="p-2 text-center">$500.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+<tr class="product-row preroll">
+<td class="p-2">Seed Weed</td>
+<td class="p-2 text-center">Rainbow Belt x White Runtz<br/><span class="font-semibold">28.34% THC</span></td>
+<td class="p-2 text-center">$25.00</td>
+<td class="p-2 text-center">20</td>
+<td class="p-2 text-center">$500.00</td>
+<td class="p-2 text-center"><input class="quantity-input border rounded py-1" min="0" type="number" value="0"/></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Order Summary (30% width) -->
+<div class="order-summary w-4/12">
+<div class="summary-container p-6 rounded-lg">
+<h2 class="text-xl font-bold mb-4 text-center">Order Summary</h2>
+<div class="mb-6">
+<div class="flex justify-between font-semibold mb-2">
+<span>Items:</span>
+<span id="total-items">0</span>
+</div>
+<div class="flex justify-between font-bold text-lg mb-4 border-t border-b py-2">
+<span>Total:</span>
+<span id="total-amount">$0.00</span>
+</div>
+<div class="order-details mb-6">
+<h3 class="font-semibold mb-2">Dispensary Information</h3>
+<div class="mb-3">
+<label class="block text-sm text-gray-600 mb-1">Dispensary Name</label>
+<input class="w-full p-2 border rounded" placeholder="Enter your dispensary name" type="text"/>
+</div>
+<div class="mb-3">
+<label class="block text-sm text-gray-600 mb-1">License Number</label>
+<input class="w-full p-2 border rounded" placeholder="Enter your license number" type="text"/>
+</div>
+<div class="mb-3">
+<label class="block text-sm text-gray-600 mb-1">Contact Phone</label>
+<input class="w-full p-2 border rounded" placeholder="Enter contact phone" type="tel"/>
+</div>
+<div class="mb-3">
+<label class="block text-sm text-gray-600 mb-1">Contact Email</label>
+<input class="w-full p-2 border rounded" placeholder="Enter contact email" type="email"/>
+</div>
+<div class="mb-3">
+<label class="block text-sm text-gray-600 mb-1">Delivery Address</label>
+<textarea class="w-full p-2 border rounded" placeholder="Enter delivery address" rows="3"></textarea>
+</div>
+<div class="mb-3">
+<label class="block text-sm text-gray-600 mb-1">Requested Delivery Date</label>
+<input class="w-full p-2 border rounded" type="date"/>
+</div>
+<div class="mb-3">
+<label class="block text-sm text-gray-600 mb-1">Special Instructions</label>
+<textarea class="w-full p-2 border rounded" placeholder="Any special instructions?" rows="2"></textarea>
+</div>
+</div>
+<button class="order-btn w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded">
+                            Submit Order
+                        </button>
+</div>
+<div class="text-center mt-6">
+<p class="text-sm text-gray-600 mb-2">Questions about your order?</p>
+<p class="font-semibold">Contact Honest Pharmco</p>
+<p class="text-sm">621 E. Maple Ave, Newark, NY 14513</p>
+<p class="text-sm">(315) 830-0041</p>
+<p class="text-sm">orders@honestpharmco.com</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+        // Tab switching functionality
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                document.querySelectorAll('.nav-tab').forEach(t => {
+                    t.classList.remove('active');
+                });
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                const category = tab.dataset.category;
+                
+                if (category === 'all') {
+                    document.querySelectorAll('.product-row').forEach(row => {
+                        row.style.display = 'table-row';
+                    });
+                } else {
+                    document.querySelectorAll('.product-row').forEach(row => {
+                        if (row.classList.contains(category)) {
+                            row.style.display = 'table-row';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Order calculation functionality
+        document.querySelectorAll('.quantity-input').forEach(input => {
+            input.addEventListener('change', updateOrderSummary);
+            input.addEventListener('input', updateOrderSummary);
+        });
+        
+        function updateOrderSummary() {
+            let totalItems = 0;
+            let totalAmount = 0;
+            
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                const quantity = parseInt(input.value) || 0;
+                if (quantity > 0) {
+                    totalItems += quantity;
+                    const row = input.closest('tr');
+                    const unitPrice = parseFloat(row.cells[2].innerText.replace('$', ''));
+                    totalAmount += quantity * unitPrice;
+                }
+            });
+            
+            document.getElementById('total-items').innerText = totalItems;
+            document.getElementById('total-amount').innerText = '$' + totalAmount.toFixed(2);
+        }
+        
+        // Order button functionality
+        document.querySelector('.order-btn').addEventListener('click', () => {
+            alert('Order submitted successfully! The Honest Pharmco team will contact you shortly to confirm your order.');
+        });
+    </script>
+</body>
+</html>
