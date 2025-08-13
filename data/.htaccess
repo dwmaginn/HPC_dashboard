@@ -1,0 +1,5 @@
+<FilesMatch "\.(xlsx|log)$">
+  Require all denied
+</FilesMatch>
+
+

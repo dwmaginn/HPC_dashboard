@@ -1,0 +1,10 @@
+{
+  "name": "honestpharmco/cannabis-order-dashboard",
+  "description": "Ordering dashboard backend and frontend",
+  "type": "project",
+  "require": {
+    "phpmailer/phpmailer": "^6.9"
+  }
+}
+
+
