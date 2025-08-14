@@ -1,0 +1,9 @@
+<If "%{HTTPS} == 'off'">
+RewriteEngine On
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+</If>
+
+<FilesMatch "\.(xlsx|log)$">
+Require all denied
+</FilesMatch>
+

@@ -17,18 +17,29 @@ function convertExcelToJson({ inputXlsxPath, outputJsonPath }) {
 	}
 
 	const workbook = XLSX.readFile(inputXlsxPath);
-	const firstSheetName = workbook.SheetNames[0];
-	if (!firstSheetName) {
+	const sheetNames = workbook.SheetNames || [];
+	if (sheetNames.length === 0) {
 		throw new Error('No sheets found in the Excel workbook.');
 	}
 
-	const worksheet = workbook.Sheets[firstSheetName];
-	const rows = XLSX.utils.sheet_to_json(worksheet, { defval: '' });
+	// Aggregate rows from all sheets to avoid missing products split across sheets
+	const aggregated = [];
+	for (const sheetName of sheetNames) {
+		const worksheet = workbook.Sheets[sheetName];
+		if (!worksheet) continue;
+		const rows = XLSX.utils.sheet_to_json(worksheet, { defval: '' });
+		for (const row of rows) {
+			// Filter out rows that are entirely empty strings
+			const values = Object.values(row || {});
+			const isAllEmpty = values.length === 0 || values.every(v => String(v).trim() === '');
+			if (!isAllEmpty) aggregated.push(row);
+		}
+	}
 
 	ensureDirectoryExists(outputJsonPath);
-	fs.writeFileSync(outputJsonPath, JSON.stringify(rows, null, 2), 'utf8');
+	fs.writeFileSync(outputJsonPath, JSON.stringify(aggregated, null, 2), 'utf8');
 
-	return { count: rows.length, sheet: firstSheetName };
+	return { count: aggregated.length, sheet: sheetNames.join(', ') };
 }
 
 function main() {
