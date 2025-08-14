@@ -30,7 +30,9 @@ jobs:
       - name: Install PHP dependencies
         run: composer install --no-dev --prefer-dist --no-interaction --no-progress
 
-      - name: Deployment step placeholder (IONOS Deploy Now will inject its own deploy step after linking)
-        run: echo "Deployment handled by IONOS Deploy Now after project linking."
+      - name: Deploy
+        uses: ionos-deploy-now/actions@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
 
